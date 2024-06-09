@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- templates/home.html -->
+
+    <h1>Welcome to the Home Page</h1>
+
+    {% if user.is_authenticated %}
+    <p>Hello, {{ user.first_name }} {{ user.last_name }} ({{ user.email }})!</p>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+    <p>You are not logged in.</p>
+    <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Sign Up</a></p>
+    {% endif %}
+
+</body>
+
+</html>

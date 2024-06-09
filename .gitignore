@@ -1,5 +1,5 @@
 # Ignore the virtual environment folder
-venv/
+django_course/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
