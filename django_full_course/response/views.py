@@ -10,6 +10,10 @@ from django.http import (
 )
 from django.template.response import TemplateResponse
 import datetime
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.views import APIView
 
 
 # Create your views here.
@@ -61,3 +65,52 @@ def page_not_allowed(request):
 
 def page_not_found(request):
     return HttpResponseServerError("server busy")
+
+
+@api_view(["GET"])
+def resp1(request):
+    return Response({"data": "get method received"})
+
+
+@api_view(["GET", "POST"])
+def resp_status(request):
+    if request.method == "POST":
+        return Response(
+            {
+                "request_status": "successful",
+                "data": "post request processed successfully",
+                "error_code": 0000,
+            },
+            status=status.HTTP_201_CREATED,
+        )
+    else:
+        return Response(
+            {
+                "request_status": "successful",
+                "data": "get request processed successfully",
+                "error_code": 0000,
+            },
+            status=status.HTTP_202_ACCEPTED,
+        )
+
+
+from .serializers import ProductSerializer
+from .models import Product
+
+
+class SampleView(APIView):
+
+    def get(self, request):
+        data = Product.objects.all()
+        # Pass 'many=True' to serialize a queryset
+        response = ProductSerializer(data, many=True).data
+        return Response({"data": response})
+
+    def post(self, request):
+        serializer = ProductSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {"message": "Product created successfully", "data": serializer.data}
+            )
+        return Response(serializer.errors, status=400)

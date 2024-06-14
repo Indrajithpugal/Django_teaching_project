@@ -8,6 +8,9 @@ from response.views import (
     page_not_found,
     bad_request,
     page_not_allowed,
+    resp1,
+    resp_status,
+    SampleView,
 )
 from django.urls import path
 
@@ -21,4 +24,7 @@ urlpatterns = [
     path("not_found", page_not_found),
     path("bad", bad_request),
     path("not_allowed", page_not_allowed),
+    path("drf1", resp1),
+    path("drf_status", resp_status),
+    path("class_view", SampleView.as_view()),
 ]
