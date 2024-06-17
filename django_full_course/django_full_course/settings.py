@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "response",
     "rest_framework",
     "requests",
+    "model_fields",
 ]
 
 MIDDLEWARE = [
