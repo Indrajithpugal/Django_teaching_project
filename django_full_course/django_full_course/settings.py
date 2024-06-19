@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "requests",
     "model_fields",
+    "orm_app",
 ]
 
 MIDDLEWARE = [
