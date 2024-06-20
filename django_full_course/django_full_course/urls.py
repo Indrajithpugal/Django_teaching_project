@@ -23,4 +23,5 @@ urlpatterns = [
     path("user/", include("userapp.urls")),
     path("resp/", include("response.urls")),
     path("req/", include("requests.urls")),
+    path("form/", include("forms_app.urls")),
 ]

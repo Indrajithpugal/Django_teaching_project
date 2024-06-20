@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "requests",
     "model_fields",
     "orm_app",
+    "admin_ui",
+    "forms_app",
 ]
 
 MIDDLEWARE = [

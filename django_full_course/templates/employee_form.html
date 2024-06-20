@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee form</title>
+</head>
+
+<body>
+    <h1>enter the details below</h1>
+    <form method="post">
+        {%csrf_token%} {{form.non_field_errors}} <div>
+            {{form.name}}
+            {{form.name.errors}}
+
+        </div>
+
+        <div>
+            {{form.email}}
+            {{form.email.errors}}
+
+        </div>
+
+        <div>
+            {{form.phone}}
+            {{form.phone.errors}}
+
+        </div>
+
+        <div>
+            {{form.address}}
+            {{form.address.errors}}
+
+        </div>
+        <input type="submit" , value="Submit">
+    </form>
+</body>
+
+</html>
