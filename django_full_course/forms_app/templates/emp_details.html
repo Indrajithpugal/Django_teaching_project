@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" </head>
+
+<body>
+    <div>
+        <ol>
+            {% for employee in employees %}
+            <li>{{employee.name}}</li>
+            <li>{{employee.email}}</li>
+            <li>{{employee.phone}}</li>
+            <li>{{employee.address}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+
+</html>
