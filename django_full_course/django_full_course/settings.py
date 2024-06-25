@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "orm_app",
     "admin_ui",
     "forms_app",
+    "drfviews",
 ]
 
 MIDDLEWARE = [

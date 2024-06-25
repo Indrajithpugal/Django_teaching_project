@@ -7,7 +7,10 @@ from rest_framework.generics import (
     UpdateAPIView,
     ListCreateAPIView,
 )
-from .serializers import LaptopSerializer
+from .serializers import LaptopSerializer, GrocerySerializers, GroceryImageSerializer
+from rest_framework.viewsets import ModelViewSet
+from .models import Groceries
+
 
 # Create your views here.
 
@@ -55,3 +58,13 @@ class LaptopApi(ListCreateAPIView):
 
     queryset = Laptop.objects.all()
     serializer_class = LaptopSerializer
+
+
+class GroceryView(ModelViewSet):
+    queryset = Groceries.objects.all()
+    serializer_class = GrocerySerializers
+
+
+class GroceryImageView(ModelViewSet):
+    queryset = Groceries.objects.all()
+    serializer_class = GroceryImageSerializer
