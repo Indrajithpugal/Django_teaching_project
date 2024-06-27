@@ -3,6 +3,9 @@ from django.contrib.auth import login, logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 @csrf_exempt
@@ -62,3 +65,26 @@ def logout_view(request):
 
 def home_view(request):
     return render(request, "home.html")
+
+
+@api_view(["GET", "POST"])
+def token_view(request):
+    """
+    once after logging in the user this function returns the authentication token
+    as the response so that the user can use that to access the project pages
+    """
+
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            # fetching the toke for the user
+            # if you are getting Token has no attribute "objects" -- the reason error is make sure that u are added "rest_framework.authtoken"
+            # in settings. installed apps and did migrations
+            auth_token = Token.objects.filter(user=user).values()
+            return Response(auth_token)
+
+    else:
+        form = AuthenticationForm()
+    return render(request, "token.html", {"form": form})

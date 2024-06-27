@@ -12,8 +12,8 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
-router.register("grocery", GroceryView)
-router.register("image", GroceryImageView)
+router.register("grocery", GroceryView, basename="grocery_view")
+router.register("image", GroceryImageView, basename="grocery_Image")
 
 urlpatterns = [
     path("genericlap", LaptopView.as_view()),

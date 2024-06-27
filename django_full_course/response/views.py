@@ -11,12 +11,19 @@ from django.http import (
 from django.template.response import TemplateResponse
 import datetime
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import (
+    api_view,
+    permission_classes,
+    authentication_classes,
+)
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.authentication import TokenAuthentication
 
 
 # Create your views here.
+@permission_classes([IsAuthenticated])
 def basic_response(request):
     return HttpResponse(f"This is basic django HttpResponse {34 + 89}")
 
@@ -73,6 +80,7 @@ def resp1(request):
 
 
 @api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
 def resp_status(request):
     if request.method == "POST":
         return Response(
