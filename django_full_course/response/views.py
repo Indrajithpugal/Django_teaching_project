@@ -25,7 +25,14 @@ from rest_framework.authentication import TokenAuthentication
 # Create your views here.
 @permission_classes([IsAuthenticated])
 def basic_response(request):
-    return HttpResponse(f"This is basic django HttpResponse {34 + 89}")
+    """
+    HttpResponse allows us to create an HttpResponse object with the content we want to send as the
+    response.
+    """
+    response = HttpResponse(f"This is basic django HttpResponse {34 + 89}")
+    response.status_code = 201
+    response["creater"] = "pugal"
+    return response
 
 
 def api_response(request):

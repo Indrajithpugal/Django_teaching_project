@@ -11,6 +11,14 @@ INITIALIZATION:
 
     then calll "django-admin startproject <projectname>"
 
+    once after we created the project get inside of project using "cd <project_name>"
+    to run the server use "python manage.py runserver",
+    to create app use "python manage.py startapp <appname>"
+    to create a model use models.py with in the app we created
+    once done with the model definition
+    do "python manage.py makemigrations" create the sql query code files with the name of "migration__001.py"
+    do "python manage.py migrate" which will execute the codes from the migrations files and create the tables in the connected database
+
 
 GIT IGNORE TO SKIP THE VENV FILES:(steps)
     in your folder open the terminal and run "echo > .gitignore" and add the files which you don't want to push

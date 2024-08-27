@@ -12,7 +12,7 @@
 
 
     <h2>Login</h2>
-    <form method="post" , action="{% url 'signup' %}">
+    <form method="post" , action="{% url 'home' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Login</button>
