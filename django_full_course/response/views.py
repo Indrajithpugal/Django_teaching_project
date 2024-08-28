@@ -23,11 +23,11 @@ from rest_framework.authentication import TokenAuthentication
 
 
 # Create your views here.
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def basic_response(request):
     """
-    HttpResponse allows us to create an HttpResponse object with the content we want to send as the
-    response.
+    HttpResponse allows us to create an HttpResponse object with the content which we want to send as the
+    response. as well as it will allow us to set HTTP headers, status codes as needed
     """
     response = HttpResponse(f"This is basic django HttpResponse {34 + 89}")
     response.status_code = 201
@@ -36,32 +36,51 @@ def basic_response(request):
 
 
 def api_response(request):
+    """
+    to create a json object and send it as response
+    """
+
     return JsonResponse(
         {"name": "user", "email": "test@sample.com", "phone number": 224235}
     )
 
 
 def html_fetcher(request):
+    """
+    render function to return html templates as responses. it is actually loading template and redering context  streamline the
+    HttpResponse
+    """
     return render(request, "index.html")
 
 
 def redicrector(request):
+    """
+    to redirect the user into another url
+    """
     return redirect("https://en.wikipedia.org/wiki/Django_(web_framework)")
 
 
 def temp_response(request):
+    """
+    template response actually process the response before actually we render the template
+    """
     now = datetime.datetime.now()
     time_dict = {"year": now.year, "month": now.month, "day": now.day, "hour": now.hour}
     return TemplateResponse(request, "time.html", context=time_dict)
+    # return render(request, "time.html", context=time_dict)
 
 
 def file_handler(request):
+    """
+    used to serve the files  as HTTP responses
+    """
     file_path = "C:/User_Desk/Teaching_contents/Django_teaching_documents/Django_Full_Course_project/django_full_course/shiva_1.jpg"
 
     response = FileResponse(open(file_path, "rb"))
 
-    response["Content-Type"] = "application/jpg"
-    response["Content-Disposition"] = 'attachement; filename = "sample.jpg"'
+    # response["Content-Type"] = "application/jpg"  #this one causes for downloading the file when access request
+    response["Content-Type"] = "image/jpg"  # to display image into the browser
+    # response["Content-Disposition"] = 'attachement; filename = "sample.jpg"'
     return response
 
 
