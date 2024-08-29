@@ -11,6 +11,7 @@ from response.views import (
     resp1,
     resp_status,
     SampleView,
+    page_internal_error,
 )
 from django.urls import path
 
@@ -22,6 +23,7 @@ urlpatterns = [
     path("temp", temp_response),
     path("file", file_handler),
     path("not_found", page_not_found),
+    path("internal_error", page_internal_error),
     path("bad", bad_request),
     path("not_allowed", page_not_allowed),
     path("drf1", resp1),

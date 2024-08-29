@@ -84,7 +84,7 @@ def file_handler(request):
     return response
 
 
-def page_not_found(request):
+def page_internal_error(request):
     return HttpResponseServerError("server busy")
 
 
@@ -92,12 +92,12 @@ def bad_request(request):
     return HttpResponseBadRequest("seems like its a bad request")
 
 
-def page_not_allowed(request):
+def page_not_found(request):
     return HttpResponseNotFound("you are not allowed to view this page")
 
 
-def page_not_found(request):
-    return HttpResponseServerError("server busy")
+def page_not_allowed(request):
+    return HttpResponseNotAllowed("this request not allowed from django")
 
 
 @api_view(["GET"])
@@ -106,7 +106,7 @@ def resp1(request):
 
 
 @api_view(["GET", "POST"])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def resp_status(request):
     if request.method == "POST":
         return Response(
